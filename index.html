@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>圖片解析度提升工具</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🖼️ 圖片解析度提升工具</h1>
+    <p>AI 自動放大圖片 2x / 4x，所有處理都在你的瀏覽器內完成，圖片不會上傳。</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <div class="group">
+        <span>放大倍率</span>
+        <label><input type="radio" name="scale" value="2" checked /> 2x</label>
+        <label><input type="radio" name="scale" value="4" /> 4x</label>
+      </div>
+      <div class="group">
+        <span>畫質</span>
+        <label><input type="radio" name="quality" value="slim" checked /> 快速</label>
+        <label><input type="radio" name="quality" value="medium" /> 高畫質（較慢）</label>
+      </div>
+    </section>
+
+    <label id="drop" class="drop">
+      <input id="file" type="file" accept="image/*" multiple hidden />
+      <div>📂 點擊或拖曳圖片到這裡（可多張）</div>
+    </label>
+
+    <div class="actions">
+      <button id="start" disabled>開始放大</button>
+      <button id="zip" disabled>全部下載（ZIP）</button>
+    </div>
+    <div id="status"></div>
+    <div id="list"></div>
+  </main>
+
+  <footer>
+    使用 <a href="https://upscalerjs.com/" target="_blank">UpscalerJS</a>（ESRGAN）· MIT License
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/upscaler@1.0.0/dist/browser/umd/upscaler.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@upscalerjs/esrgan-slim@1.0.0/dist/umd/models/esrgan-slim/src/x2/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@upscalerjs/esrgan-slim@1.0.0/dist/umd/models/esrgan-slim/src/x4/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@upscalerjs/esrgan-medium@1.0.0/dist/umd/models/esrgan-medium/src/x2/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@upscalerjs/esrgan-medium@1.0.0/dist/umd/models/esrgan-medium/src/x4/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
